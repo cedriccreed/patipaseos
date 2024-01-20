@@ -1,0 +1,76 @@
+{% extends 'app_mascotas/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+    /* Agrega el fondo degradado con la imagen */
+    body {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("{% static 'images/perri.jpg' %}") fixed center;
+        background-size: cover;
+        margin: 0; /* Elimina el margen predeterminado del cuerpo */
+    }
+
+    /* Estilos para el formulario */
+    .form {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        animation: fadeInUp 1s ease-out;
+        margin-top: 30px;
+        max-width: 600px;
+        width: 100%;
+    }
+
+    /* Otros estilos... */
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form class="form" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <h1 class="text-center">Registrarse</h1>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{ form.username|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{ form.first_name|as_crispy_field }}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{ form.last_name|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{ form.password1|as_crispy_field }}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{ form.password2|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{ form.email|as_crispy_field }}
+                    </div>
+                </div>
+
+                <div class="form-group text-center">
+                    <input type="submit" value="Registrar" class="btn btn-success">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="form-group text-center">
+
+</div>
+
+{% endblock content %}

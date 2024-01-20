@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <!-- Otras etiquetas en head... -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Tus estilos locales y otros enlaces... -->
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- DateRangePicker -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <title>{% block title %}Sitio Web{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'app_mascotas/css/estilo.css' %}">
+
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="{% url 'index' %}"><h1>Pati<strong>Paseos</strong></h1></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto">
+                </ul>
+                {% if user.is_authenticated %}
+                    <ul class="navbar-nav ml-auto">
+                    {% if not user.es_cuidador %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "cuidador" %}">Quieres convertirte en cuidador? Haz click aqui!</a>
+                        </li>
+                    {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Mensajes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "perfil" %}">Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="confirmLogout()">Cerrar Sesión</a>
+                        </li>
+                    </ul>
+                {% else %}
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "registro" %}">Registrarse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "login_custom" %}">Iniciar sesión</a>
+                        </li>
+                    </ul>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <style>
+        /* Estilo para el contenido principal */
+        .contenido-principal {
+            margin-top: 0; /* Elimina el margen superior */
+            padding-top: 20px; /* Agrega un relleno superior (ajusta según sea necesario) */
+        }
+    
+        /* Estilo para el borde del main */
+        .navbar {
+            margin-bottom: 0; /* Elimina el margen inferior del nav bar */
+        }
+    
+        /* Estilos para la lista de opciones */
+        .options-list {
+            display: flex;
+            align-items: center; /* Centra verticalmente los elementos de la lista */
+            justify-content: center; /* Centra horizontalmente los elementos de la lista */
+            padding: 0; /* Elimina el relleno de la lista */
+        }
+    
+        .options-list-item {
+            border: 1px solid #808080; /* Borde plomo */
+            margin-right: 10px; /* Espaciado entre elementos (ajusta según sea necesario) */
+            transition: border-color 0.3s, transform 0.3s; /* Transiciones suaves para el borde y el tamaño */
+        }
+    
+        .options-list-item:hover {
+            border-color: #000; /* Cambia el color del borde al pasar el cursor */
+            transform: scale(1.1); /* Aumenta el tamaño al pasar el cursor */
+        }
+    </style>
+    
+
+
+        {% block content %}
+        {% endblock %}
+
+    
+    
+
+    <footer class="footer mt-auto py-3" style="background-color: rgb(52, 58, 64); color: #ffffff;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-white">
+                    <span class="social-links-txt mb-3">¡Síguenos!</span>
+                    <ul class="social-links">
+                        <li><a href="http://www.facebook.com/tu_pagina" class="text-white"><i class="fab fa-facebook"></i></a></li>
+                    </ul>
+                    <ul class="social-links">
+                        <li><a href="http://www.instagram.com/tu_pagina" class="text-white"><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright text-white text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="footer-copyright-txt">
+                            © 2024. Todos los derechos reservados.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function confirmLogout() {
+            Swal.fire({
+                title: '¿Cerrar Sesión?',
+                text: '¿Estás seguro de que deseas cerrar sesión?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Sí',
+                cancelButtonText: 'Cancelar',
+                confirmButtonColor: 'Red'
+            }).then(function (result) {
+                if (result.isConfirmed) {
+                    window.location.href = "{% url 'logout_custom' %}";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

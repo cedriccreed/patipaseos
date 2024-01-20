@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- DateRangePicker -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <title>{% block title %}Sitio Web{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'app_mascotas/css/estilo.css' %}">
+
+</head>
+<body>
+    <header>
+        
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="{% url 'index' %}"><h1>Pati<strong>Paseos</strong></h1></a>
+            <!-- Botón para pantallas pequeñas -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <!-- Menú de Navegación -->
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto">
+                    <!-- ... (Otras opciones de menú) ... -->
+                </ul>
+                
+                {% if user.is_authenticated %}
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Elementos de menú a la derecha -->
+                    {% if not user.es_cuidador %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "cuidador" %}">Quieres convertirte en cuidador? Haz click aqui!</a>
+                        </li>
+                    {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Mensajes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "perfil" %}">Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="confirmLogout()" >Cerrar Sesión</a>
+                        </li>
+                    </ul>
+                {% else %}
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "registro" %}">Registrarse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "login_custom" %}">Iniciar sesión</a>
+                        </li>
+                    </ul>
+                {% endif %}
+            </div>
+        </nav>        
+    </header>
+    <main class="contenido-principal">
+        <div id="content-wrap">
+        {% block content %}
+        
+        {% endblock %}
+    </main>
+
+
+
+
+
+ <!-- JavaScript para la confirmación de cierre de sesión -->
+ <script>
+    function confirmLogout() {
+        Swal.fire({
+            title: '¿Cerrar Sesión?',
+            text: '¿Estás seguro de que deseas cerrar sesión?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'Cancelar',
+            confirmButtonColor: 'Red'
+        }).then(function (result) {
+            if (result.isConfirmed) {
+                window.location.href = "{% url 'logout_custom' %}";
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

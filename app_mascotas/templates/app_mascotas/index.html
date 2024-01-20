@@ -1,0 +1,165 @@
+{% extends "app_mascotas/base.html" %}
+{% load static %}
+{% block title %}PatiPaseos{% endblock %}
+
+{% block content %}
+<style>
+  /* Estilos para el fondo degradado */
+  .background-container {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static 'images/perri.jpg' %}") center/cover no-repeat;
+    padding-top: 50px; /* Ajusta el espacio entre el carrusel y el contenido principal */
+    padding-bottom: 50px; /* Ajusta el espacio entre el fondo degradado y el contenido principal */
+  }
+
+  /* Ajustes para el carrusel */
+  #carouselExample {
+    margin-bottom: 20px; /* Ajusta el espacio entre el carrusel y el fondo degradado */
+  }
+
+  .navbar-brand img {
+    /* Modifica el ancho y alto de la imagen */
+    width: 120px; /* Ajusta según sea necesario */
+    height: 100px; /* Ajusta según sea necesario */
+    border: 2px solid #808080;
+    padding: 5px; /* Ajusta según sea necesario */
+    border-radius: 5px; /* Ajusta según sea necesario */
+
+    /* Añade transición para el efecto de zoom */
+    transition: transform 0.3s ease-out;
+}
+
+.navbar-brand img:hover {
+    /* Aplica el efecto de zoom al pasar el cursor */
+    transform: scale(1.1);
+}
+
+.navbar-nav.options-list {
+  font-size: 20px; /* Ajusta según sea necesario */
+}
+
+.navbar-nav.options-list-item {
+  margin-right: 15px; /* Ajusta según sea necesario */
+}
+
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+  <!-- Agrega el logo a la izquierda -->
+  <a class="navbar-brand" href="{% url 'index' %}">
+      <img src="{% static 'images/patipaseospng.png' %}" alt="Logo">
+  </a>
+
+  <ul class="navbar-nav options-list mx-auto">
+      <li class="nav-item options-list-item mx-2"><a class="nav-link text-dark" href="{% url 'index' %}">Inicio</a></li>
+      <li class="nav-item options-list-item mx-2"><a class="nav-link text-dark" href="{% url 'registro' %}">Regístrate</a></li>
+      <li class="nav-item options-list-item mx-2"><a class="nav-link text-dark" href="#">Contacto</a></li>
+  </ul>
+</nav>
+
+
+<!-- Contenedor para el fondo degradado -->
+<div class="background-container">
+  <!-- Carrusel Bootstrap -->
+  <div id="carouselExample" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'images/doberman.jpg' %}" class="d-block w-100" alt="Slide 1">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/perro2.jpg' %}" class="d-block w-100" alt="Slide 2">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/perri.jpg' %}" class="d-block w-100" alt="Slide 3">
+      </div>
+      <!-- Agrega más elementos de carrusel según sea necesario -->
+    </div>
+    <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Anterior</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Siguiente</span>
+    </a>
+  </div>
+</div>
+
+<!-- Contenido principal -->
+
+<!-- Contenido principal -->
+<div class="container mt-5 text-center">
+  <!-- Título animado -->
+  <h1 class="animate__animated animate__fadeInDown" style="color: #808080;">PATIPASEO TE OFRECE</h1>
+  <h2 class="animate__animated animate__fadeInDown" style="color: #808080; font-size: 1.5rem;">RAZONES PRINCIPALES</h2>
+  <div class="row">
+
+    <!-- Sección: Personas verificadas -->
+    <div class="col-md-6">
+      <div class="section-container animate__animated animate__fadeInUp rounded p-4" style="color: #3498db; border: 2px solid rgb(128, 128, 128); background: rgba(255, 255, 255, 0.8); transition: background 0.3s;">
+        <i class="fas fa-check-circle fa-3x" style="color: rgb(75, 0, 130);"></i>
+        <h2 style="color: black;">Personas verificadas</h2>
+        <p style="color: black;">Todas las personas que ofrecen servicio de cuidado o paseo han pasado por un proceso de verificación.</p>
+      </div>
+    </div>
+
+    <!-- Sección: Garantía veterinaria -->
+    <div class="col-md-6">
+      <div class="section-container animate__animated animate__fadeInUp rounded p-4" style="color: #2ecc71; border: 2px solid rgb(128, 128, 128); background: rgba(255, 255, 255, 0.8); transition: background 0.3s;">
+        <i class="fas fa-medkit fa-3x" style="color: rgb(0, 0, 128);"></i>
+        <h2 style="color: black;">Garantía veterinaria</h2>
+        <p style="color: black;">Todos los perros durante el servicio Duko cuentan con garantía veterinaria limitada en caso de alguna emergencia.</p>
+      </div>
+    </div>
+
+    <!-- Sección: Perros felices -->
+    <div class="col-md-6 mt-4">
+      <div class="section-container animate__animated animate__fadeInUp rounded p-4" style="color: #e74c3c; border: 2px solid rgb(128, 128, 128); background: rgba(255, 255, 255, 0.8); transition: background 0.3s;">
+        <i class="fas fa-paw fa-3x" style="color: rgb(128, 0, 128);"></i>
+        <h2 style="color: black;">Perros felices</h2>
+        <p style="color: black;">Tu perro nunca será enjaulado cuando se quede a dormir y estará bien cuidado. Durante los paseos vamos a su ritmo para que lo disfrute.</p>
+      </div>
+    </div>
+
+    <!-- Sección: Seguimiento -->
+    <div class="col-md-6 mt-4">
+      <div class="section-container animate__animated animate__fadeInUp rounded p-4" style="color: #f39c12; border: 2px solid rgb(128, 128, 128); background: rgba(255, 255, 255, 0.8); transition: background 0.3s;">
+        <i class="fas fa-chart-line fa-3x" style="color: rgb(0, 0, 128);"></i>
+        <h2 style="color: black;">Seguimiento</h2>
+        <p style="color: black;">Podrás consultar y dar seguimiento de cada paseo o cuidado que se realice a través de la App o portal de seguimiento.</p>
+      </div>
+    </div>
+
+    <!-- Agrega un contenedor para los íconos animados -->
+    <div class="col-md-12 mt-4">
+      <div class="icon-container animate__animated animate__bounceIn" style="color: #8e44ad;">
+        <i class="fas fa-dog fa-5x animate__animated animate__hover__rubberBand" style="color: rgb(75, 0, 130); margin-right: 20px;"></i>
+        <i class="fas fa-paw fa-5x animate__animated animate__hover__rubberBand" style="color: rgb(128, 0, 128);"></i>
+        <i class="fas fa-cat fa-5x animate__animated animate__hover__rubberBand" style="color: rgb(0, 0, 128); margin-left: 20px;"></i>
+      </div>
+    </div>
+
+    <div class="col-md-12 mt-4">
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+

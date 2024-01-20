@@ -1,0 +1,78 @@
+{% extends 'app_mascotas/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+    /* Agrega el fondo degradado con la imagen */
+    body {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("{% static 'images/perri.jpg' %}") fixed center;
+        background-size: cover;
+        margin: 0; /* Elimina el margen predeterminado del cuerpo */
+    }
+
+    /* Estilos para el formulario de inicio de sesión */
+    .cont1 {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .login-form {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        animation: fadeInUp 1s ease-out;
+        max-width: 400px;
+        width: 100%;
+    }
+
+    h1 {
+        color: #3498db;
+        text-align: center;
+    }
+
+    .btn-success {
+        background-color: #27ae60;
+        border: 1px solid #27ae60;
+        width: 100%;
+    }
+
+    .btn-success:hover {
+        background-color: #219d54;
+        border: 1px solid #219d54;
+    }
+
+    .forgot-password {
+        text-align: center;
+    }
+
+    /* Otros estilos... */
+</style>
+
+<div class="cont1">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="login-form">
+                    <h1>Iniciar Sesión</h1>
+                    <form action="" method="POST" class="form">
+                        {% csrf_token %}
+                        {{form|crispy}}
+                        <input type="submit" class="btn btn-success btn-lg" value="Ingresar"><br>
+                        <div class="forgot-password">
+                            <a href="#">¿Olvidaste tu contraseña?</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
